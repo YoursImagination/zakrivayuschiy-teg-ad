@@ -9,3 +9,97 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
+
+/* Опишите в этом файле все keyframes для проекта и стили анимаций иконки Like.
+
+Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
+
+*/
+
+@keyframes heartBeat {
+    0% {
+        transform: scale(1);
+    }
+    95% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes sparks {
+    0% {
+        fill: transparent;
+    }
+
+    100% {
+        fill: #ff0000;
+    }
+}
+
+.card__icon-button:hover .main-body {
+    fill: #000;
+    transition: fill 0.3s 0.05s linear;
+}
+
+.card__icon-button:hover .core {
+    fill: #000;
+    transition: fill 0.3s linear;
+}
+
+.card__icon-button:active .main-body {
+    fill: #ff0000;
+    transition: fill 0.3s 0.05s linear;
+}
+
+.card__icon-button:active .core {
+    fill:#ff0000;
+    transition: fill 0.3s linear;
+}
+
+.like-icon .core {
+    transition: fill 0.3s 0.03s linear;
+}
+
+.like-icon .main-body {
+    transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .core {
+    fill: #ff0000;
+    transition: fill 0.3s linear;
+}
+
+.like-icon.is-liked .main-body {
+    fill: #ff0000;
+    transition: fill 0.3s 0.05s linear;
+}
+
+.like-icon .contour {
+    transition: fill 0.1s linear;
+}
+
+.like-icon.is-liked .contour {
+    fill: #ff0000;
+    transition: fill 0.3s 0.06s linear;
+}
+
+.like-icon.is-liked .sparks {
+    transform-origin: center;
+    animation: sparks 0.3s 0.3s ease-in alternate;
+}
+
+.card__like-button:active {
+    animation: box-shadow 0.3s ease;
+}
+
+.like-icon.is-liked {
+    animation: heartBeat 0.5s ease-in-out alternate;
+}

@@ -1,1 +1,21 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+    --font-main: "Inter-Variable", "Inter", sans-serif;
+    --font-fantasy: "PressStart2P", sans-serif;
+
+    --font-weight-bold: 715;
+    --font-weight-regular: 400;
+    --font-weight-regular-plus: 410;
+
+    --bg-color: #ffffff;
+    --text-color: #000;
+    --accent-color: #fff;
+    --gray-light: #d3d3d3;
+    --gray-medium: #e7e7e7;
+    --gray-dark: #1a1a1a;
+
+--container-width: clamp(23.438rem, 16.285rem + 30.52vw, 43.75rem);
+    --page-padding: 100px;
+    --card-padding: 25px;
+
+    --transition: 0.5s ease;
+}
