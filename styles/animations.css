@@ -15,12 +15,12 @@
 
 @media (hover: hover) {
 
-    .like-icon:hover .main-body{
+    .like-icon:hover .main-body {
         fill: var(--accent-color);
         transition: fill .3s linear .05s;
     }
 
-    .like-icon:hover .core{
+    .like-icon:hover .core {
         transition: fill .3s linear;
         fill: var(--accent-color);
     }
@@ -46,7 +46,7 @@
     transition: fill .3s linear .03s;
 }
 
-.like-icon:active .core{
+.like-icon:active .core {
     fill: var(--color-fill);
     transition: fill .3s linear;
 }
@@ -56,7 +56,7 @@
     transition: fill .3s linear;
 }
 
-.like-icon:active .main-body{
+.like-icon:active .main-body {
     fill: var(--color-fill);
     transition: fill .3s linear .05s;
 }

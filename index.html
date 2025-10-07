@@ -23,7 +23,7 @@
     <div class="card container-width">
       <h2 class="card__title">Фритрек и нулевой спринт: Подготовка к работе</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка двух воинов на закате." class="card__image container-width saturation-filter" src="images/Cosmo.jpg">
+        <img alt="Арт 1" class="card__image container-width saturation-filter" src="images/1.jpg">
         <span class="image-decoration"><!--Ожидание--></span>
       </div>
       <div class="card__description-wrapper">
@@ -50,7 +50,7 @@
     <div class="card container-width">
       <h2 class="card__title">1 спринт: Я — чистый лист</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка заснеженного леса." class="card__image container-width grayscale-filter" src="images/snow.jpg">
+        <img alt="Арт 2" class="card__image container-width grayscale-filter" src="images/2.jpg">
         <span class="image-decoration"><!--Выбор--></span>
       </div>
       <div class="card__description-wrapper">
@@ -80,7 +80,7 @@
     <div class="card container-width">
       <h2 class="card__title">1 спринт: А если не получится?</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка аномалии в заброшенной деревне." class="card__image container-width contrast-filter" src="images/drama.jpg">
+        <img alt="Арт 3" class="card__image container-width contrast-filter" src="images/3.jpg">
         <span class="image-decoration"><!--Уверенность--></span>
       </div>
       <div class="card__description-wrapper">
@@ -107,7 +107,7 @@
     <div class="card container-width">
       <h2 class="card__title">2 спринт: Погоня за идеалом</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка огненного магического шара." class="card__image container-width invert-filter" src="images/Magic.jpg">
+        <img alt="Арт 4" class="card__image container-width invert-filter" src="images/4.jpg">
         <span class="image-decoration"><!--Упорство--></span>
       </div>
       <div class="card__description-wrapper">
@@ -135,7 +135,7 @@
     <div class="card container-width">
       <h2 class="card__title">2 спринт: О тех, кто рядом</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка молодых людей на склоне холма и фоне облаков." class="card__image container-width sepia-filter" src="images/family.jpg">
+        <img alt="Арт 5" class="card__image container-width sepia-filter" src="images/5.jpg">
         <span class="image-decoration"><!--Поддержка--></span>
       </div>
       <div class="card__description-wrapper">
@@ -164,7 +164,7 @@
     <div class="card container-width">
       <h2 class="card__title">3 спринт: Обходные стратегии</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка бродящего по лесу вампира с собачкой." class="card__image container-width hue-rotate-filter" src="images/game.jpg">
+        <img alt="Арт 6" class="card__image container-width hue-rotate-filter" src="images/6.jpg">
         <span class="image-decoration"><!--Поиск--></span>
       </div>
       <div class="card__description-wrapper">
@@ -191,7 +191,7 @@
     <div class="card container-width">
       <h2 class="card__title">3 спринт: Когда опускаются руки</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка пикачу на фоне моря." class="card__image container-width grayscale-saturate-filter" src="images/advanture.jpg">
+        <img alt="Арт 7" class="card__image container-width grayscale-saturate-filter" src="images/7.jpg">
         <span class="image-decoration"><!--Уверенность--></span>
       </div>
       <div class="card__description-wrapper">
@@ -219,7 +219,7 @@
     <div class="card container-width">
       <h2 class="card__title">«Сейчас я здесь»</h2>
       <div class="card__image-wrapper">
-        <img alt="Пиксельная картинка человека в огне." class="card__image container-width brightness-filter" src="images/Burn.jpg">
+        <img alt="Арт 8" class="card__image container-width brightness-filter" src="images/8.jpg">
         <span class="image-decoration"><!--Опыт--></span>
       </div>
       <div class="card__description-wrapper">
@@ -248,7 +248,7 @@
   </section>
 </main>
 <footer class="footer">
-  <button aria-controls="dialog-id" class="save-btn button" onclick="window['dialog-id'].showModal();">
+  <button aria-controls="dialog-id" class="save-btn button" onclick="event.preventDefault(); window['dialog-id'].showModal();">
     <svg class="blend-mode-svg footer-svg-button" height="39px" viewBox="0 0 40 40" width="39px">
       <use class="floppy" href="images/floppy.svg#floppy"></use>
     </svg>
@@ -259,7 +259,7 @@
       <use class="floppy" href="images/floppy.svg#floppy"></use>
     </svg>
     <span class="button__text dialog__text">Вставьте дискету, чтобы продолжить</span>
-    <button class="button dialog__button" onclick="window['dialog-id'].close()" type="button">
+    <button class="button dialog__button" onclick="event.preventDefault(); window['dialog-id'].close()" type="button">
       <span class="button__text">OK</span>
     </button>
   </dialog>
