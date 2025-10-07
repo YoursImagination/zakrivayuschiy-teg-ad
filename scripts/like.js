@@ -14,6 +14,7 @@ iconButtonArray.forEach(button => {
 iconButtonArray.forEach((iconButton, index) => {
   iconButton.addEventListener('click', (event) => {
     event.preventDefault();
+    return false;
     toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
   });
 });
@@ -21,6 +22,7 @@ iconButtonArray.forEach((iconButton, index) => {
 likeButtonArray.forEach((button, index) => {
   button.addEventListener('click', (event) => {
     event.preventDefault();
+    return false;
     toggleIsLiked(likeHeartArray[index], button);
   });
 });
@@ -51,21 +53,25 @@ const dialogOkBtn = document.querySelector('.dialog__button');
 
 saveBtn.addEventListener('click', (event) => {
   event.preventDefault();
+  return false;
   dialog.showModal();
 });
 
 dialogOkBtn.addEventListener('click', (event) => {
   event.preventDefault();
+  return false;
   dialog.close();
 });
 
 // Глобальная защита от перезагрузки, господи помилуй
 document.addEventListener('submit', (event) => {
   event.preventDefault();
+  return false;
 });
 
 document.addEventListener('click', (event) => {
   if (event.target.closest('button') && !event.target.closest('form')) {
     event.preventDefault();
+    return false;
   }
 });
