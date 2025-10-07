@@ -1,29 +1,28 @@
-/* этот скрипт использует такие имена классов:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-Если эти классы поменять в HTML, скрипт перестанет работать. Будьте аккуратны.
-*/
-
 const likeHeartArray = document.querySelectorAll('.like-icon');
 const likeButtonArray = document.querySelectorAll('.card__like-button');
 const iconButtonArray = document.querySelectorAll('.card__icon-button');
 
+// Добавляем type="button" всем кнопкам лайков программно (на всякий случай)
+likeButtonArray.forEach(button => {
+  button.type = 'button';
+});
+
+iconButtonArray.forEach(button => {
+  button.type = 'button';
+});
+
 iconButtonArray.forEach((iconButton, index) => {
-  iconButton.onclick = (event) => {
-    event.preventDefault(); // Предотвращаем перезагрузку
+  iconButton.addEventListener('click', (event) => {
+    event.preventDefault();
     toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
-  };
+  });
 });
 
 likeButtonArray.forEach((button, index) => {
-  button.onclick = (event) => {
-    event.preventDefault(); // Предотвращаем перезагрузку
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
     toggleIsLiked(likeHeartArray[index], button);
-  };
+  });
 });
 
 function toggleIsLiked(heart, button) {
@@ -32,7 +31,7 @@ function toggleIsLiked(heart, button) {
 }
 
 function setButtonText(heart, button) {
-  if ([...heart.classList].includes('is-liked')) {
+  if (heart.classList.contains('is-liked')) {
     setTimeout(
       () => (button.querySelector('.button__text').textContent = 'Unlike'),
       500
@@ -44,3 +43,29 @@ function setButtonText(heart, button) {
     );
   }
 }
+
+// Обработчики для диалогов
+const saveBtn = document.querySelector('.save-btn');
+const dialog = document.getElementById('dialog-id');
+const dialogOkBtn = document.querySelector('.dialog__button');
+
+saveBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  dialog.showModal();
+});
+
+dialogOkBtn.addEventListener('click', (event) => {
+  event.preventDefault();
+  dialog.close();
+});
+
+// Глобальная защита от перезагрузки, господи помилуй
+document.addEventListener('submit', (event) => {
+  event.preventDefault();
+});
+
+document.addEventListener('click', (event) => {
+  if (event.target.closest('button') && !event.target.closest('form')) {
+    event.preventDefault();
+  }
+});
