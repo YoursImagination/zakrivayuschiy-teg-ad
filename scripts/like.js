@@ -2,19 +2,20 @@
 document.addEventListener('DOMContentLoaded', function() {
   const saveBtn = document.querySelector('.save-btn');
   const dialogOkBtn = document.querySelector('.dialog__button');
-  const likeButtons = document.querySelectorAll('.card__like-button');
-  const iconButtons = document.querySelectorAll('.card__icon-button');
   function replaceButtonWithSpan(button) {
     const span = document.createElement('span');
     span.innerHTML = button.innerHTML;
     span.className = button.className;
-    span.style.cssText = button.style.cssText;
     for (let attr of button.attributes) {
-      if (attr.name !== 'type') {
+      if (attr.name !== 'type' && attr.name !== 'onclick') {
         span.setAttribute(attr.name, attr.value);
       }
     }
+    span.style.cssText = button.style.cssText;
     span.style.cursor = 'pointer';
+    span.style.display = 'flex';
+    span.style.alignItems = 'center';
+    span.style.justifyContent = 'center';
     button.parentNode.replaceChild(span, button);
     return span;
   }
