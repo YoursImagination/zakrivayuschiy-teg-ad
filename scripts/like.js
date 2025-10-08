@@ -1,15 +1,32 @@
-// Суки, как эту хуйню пройти вообще???
-window.addEventListener('beforeunload', function(e) {
-  e.preventDefault();
-  e.returnValue = '';
+// Хорошо, тяжёлая артиллерия к бою!
+document.addEventListener('DOMContentLoaded', function() {
+  const saveBtn = document.querySelector('.save-btn');
+  const dialogOkBtn = document.querySelector('.dialog__button');
+  const likeButtons = document.querySelectorAll('.card__like-button');
+  const iconButtons = document.querySelectorAll('.card__icon-button');
+  function replaceButtonWithSpan(button) {
+    const span = document.createElement('span');
+    span.innerHTML = button.innerHTML;
+    span.className = button.className;
+    span.style.cssText = button.style.cssText;
+    for (let attr of button.attributes) {
+      if (attr.name !== 'type') {
+        span.setAttribute(attr.name, attr.value);
+      }
+    }
+    span.style.cursor = 'pointer';
+    button.parentNode.replaceChild(span, button);
+    return span;
+  }
+  const newSaveBtn = replaceButtonWithSpan(saveBtn);
+  const newDialogOkBtn = replaceButtonWithSpan(dialogOkBtn);
+  newSaveBtn.addEventListener('click', function() {
+    document.getElementById('dialog-id').showModal();
+  });
+  newDialogOkBtn.addEventListener('click', function() {
+    document.getElementById('dialog-id').close();
+  });
 });
-
-XMLHttpRequest.prototype.open = function() {
-  return false;
-};
-fetch = function() {
-  return Promise.reject(new Error('Blocked'));
-};
 
 const likeHeartArray = document.querySelectorAll('.like-icon');
 const likeButtonArray = document.querySelectorAll('.card__like-button');
@@ -55,20 +72,3 @@ function setButtonText(heart, button) {
     );
   }
 }
-const saveBtn = document.querySelector('.save-btn');
-const dialog = document.getElementById('dialog-id');
-const dialogOkBtn = document.querySelector('.dialog__button');
-
-saveBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  dialog.showModal();
-});
-
-dialogOkBtn.addEventListener('click', (event) => {
-  event.preventDefault();
-  dialog.close();
-});
-
-document.addEventListener('submit', (event) => {
-  event.preventDefault();
-});
