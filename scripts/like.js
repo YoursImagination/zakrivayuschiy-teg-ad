@@ -1,58 +1,24 @@
-// Хорошо, тяжёлая артиллерия к бою!
-document.addEventListener('DOMContentLoaded', function() {
-  const saveBtn = document.querySelector('.save-btn');
-  const dialogOkBtn = document.querySelector('.dialog__button');
-  function replaceButtonWithSpan(button) {
-    const span = document.createElement('span');
-    span.innerHTML = button.innerHTML;
-    span.className = button.className;
-    for (let attr of button.attributes) {
-      if (attr.name !== 'type' && attr.name !== 'onclick') {
-        span.setAttribute(attr.name, attr.value);
-      }
-    }
-    span.style.cssText = button.style.cssText;
-    span.style.cursor = 'pointer';
-    span.style.display = 'flex';
-    span.style.alignItems = 'center';
-    span.style.justifyContent = 'center';
-    button.parentNode.replaceChild(span, button);
-    return span;
-  }
-  const newSaveBtn = replaceButtonWithSpan(saveBtn);
-  const newDialogOkBtn = replaceButtonWithSpan(dialogOkBtn);
-  newSaveBtn.addEventListener('click', function() {
-    document.getElementById('dialog-id').showModal();
-  });
-  newDialogOkBtn.addEventListener('click', function() {
-    document.getElementById('dialog-id').close();
-  });
-});
+/* этот скрипт использует такие имена классов:
+✦ like-icon — для svg-иконки анимированного сердца
+✦ card__like-button — для кнопки Like рядом с иконкой
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ card__icon-button — для кнопки, оборачивающей иконку
+✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
+✦ button__text — для обозначения текстового элемента внутри кнопки
+Если эти классы поменять в HTML, скрипт перестанет работать. Будьте аккуратны.
+*/
 
 const likeHeartArray = document.querySelectorAll('.like-icon');
 const likeButtonArray = document.querySelectorAll('.card__like-button');
 const iconButtonArray = document.querySelectorAll('.card__icon-button');
 
-likeButtonArray.forEach(button => {
-  button.type = 'button';
-});
-
-iconButtonArray.forEach(button => {
-  button.type = 'button';
-});
-
 iconButtonArray.forEach((iconButton, index) => {
-  iconButton.addEventListener('click', (event) => {
-    event.preventDefault();
-    toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
-  });
+  iconButton.onclick = () =>
+  toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
 });
 
 likeButtonArray.forEach((button, index) => {
-  button.addEventListener('click', (event) => {
-    event.preventDefault();
-    toggleIsLiked(likeHeartArray[index], button);
-  });
+  button.onclick = () => toggleIsLiked(likeHeartArray[index], button);
 });
 
 function toggleIsLiked(heart, button) {
@@ -61,7 +27,7 @@ function toggleIsLiked(heart, button) {
 }
 
 function setButtonText(heart, button) {
-  if (heart.classList.contains('is-liked')) {
+  if ([...heart.classList].includes('is-liked')) {
     setTimeout(
       () => (button.querySelector('.button__text').textContent = 'Unlike'),
       500
