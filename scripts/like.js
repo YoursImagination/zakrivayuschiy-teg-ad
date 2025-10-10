@@ -26,6 +26,18 @@ likeButtonArray.forEach((button, index) => {
   };
 });
 
+// Сохранить на память разраба тестов
+document.querySelector('.button-remember').addEventListener('click', function(event) {
+  event.preventDefault();
+  window['dialog-id'].showModal();
+});
+
+// ОК
+document.querySelector('.button-save').addEventListener('click', function(event) {
+  event.preventDefault();
+  window['dialog-id'].close();
+});
+
 function toggleIsLiked(heart, button) {
   heart.classList.toggle('is-liked');
   setButtonText(heart, button);
