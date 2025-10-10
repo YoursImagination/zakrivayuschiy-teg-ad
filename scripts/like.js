@@ -13,29 +13,12 @@ const likeButtonArray = document.querySelectorAll('.card__like-button');
 const iconButtonArray = document.querySelectorAll('.card__icon-button');
 
 iconButtonArray.forEach((iconButton, index) => {
-  iconButton.onclick = (event) => {
-    event.preventDefault();
-    toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
-  };
+  iconButton.onclick = () =>
+  toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
 });
 
 likeButtonArray.forEach((button, index) => {
-  button.onclick = (event) => {
-    event.preventDefault();
-    toggleIsLiked(likeHeartArray[index], button);
-  };
-});
-
-// Сохранить на память разраба тестов
-document.querySelector('.button-remember').addEventListener('click', function(event) {
-  event.preventDefault();
-  window['dialog-id'].showModal();
-});
-
-// ОК
-document.querySelector('.button-save').addEventListener('click', function(event) {
-  event.preventDefault();
-  window['dialog-id'].close();
+  button.onclick = () => toggleIsLiked(likeHeartArray[index], button);
 });
 
 function toggleIsLiked(heart, button) {

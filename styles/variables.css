@@ -1,19 +1,33 @@
 /* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
 :root {
-    --main-font: 'Inter';
-    --accent-font: 'PressStart2P-Regular';
-    --bg-color: #fff;
-    --color: #000;
+    --font-alt-family: 'PressStart2P';
+    --font-var-family: 'Inter-Variable';
+    --card-title-wght: 700;
+    --main-wght: 400;
     --stroke-color: #fff;
-    --heart-color: red;
-    --border-color: #000;
-    --bg-color: #d3d3d3;
-    --linear-gradient-first: #e7e7e7;
-    --linear-gradient-second: #1a1a1a;
-    --accent-color: #000;
-    --mix-blend-color: #fff;
-    --border-color: #000;
-    --stroke-color: #fff;
-    --header-weight: 700;
-    --text-weight: 400;
+    --background-gradient:
+    repeating-linear-gradient(to right, #d3d3d3 0, #d3d3d3 2px, transparent 2px, transparent 4px),
+    repeating-linear-gradient(to bottom, #d3d3d3 0, #d3d3d3 2px, transparent 2px, transparent 4px),
+    linear-gradient(to bottom, #e7e7e7 0.01%, #1a1a1a 100%);
+    --font-size-title: clamp(3.0625rem, 2.710387323943662rem + 1.5023474178403755vw, 4.0625rem);
+    --font-size-title-des: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
+    --watermark-right:  25px;
+    --watermark-top:  25px;
+    --line-height: 1.6;
+    --margin-block-header: 128px;
+    --color-default: #fff;
+    --contour-color: #000;
+    --animation-fill-color: #ff0000;
 }
+
+@media (width <= 376px) {
+:root {
+    --watermark-right: 10px;
+    --watermark-top: 20px;
+    --line-height: 1.3;
+    --margin-block-header: 120px;
+}
+}
+
+
+
