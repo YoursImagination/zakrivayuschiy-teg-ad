@@ -13,56 +13,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Check if the repository is private
         run: exit 1
         if: ${{github.event.repository.private}}
-
-      - name: Fix dialog buttons to prevent page reload
-        run: |
-          # Создаем Python скрипт для исправления HTML
-          cat > fix_html.py << 'EOF'
-          import re
-          
-          with open('index.html', 'r', encoding='utf-8') as f:
-              content = f.read()
-          
-          # Добавляем полную защиту от перезагрузки
-          fixes = [
-              (r'onclick="window\[\'dialog-id\'\]\.showModal\(\)"', 
-               r'onclick="event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation(); window[\'dialog-id\'].showModal(); return false;"'),
-          
-              (r'onclick="window\[\'dialog-id\'\]\.close\(\)"', 
-               r'onclick="event.preventDefault(); event.stopPropagation(); event.stopImmediatePropagation(); window[\'dialog-id\'].close(); return false;"'),
-          
-              (r'<button type="button" class="button-remember"', 
-               r'<button type="button" class="button-remember" formnovalidate'),
-          
-              (r'<button type="button" class="button-save"', 
-               r'<button type="button" class="button-save" formnovalidate')
-          ]
-          
-          for pattern, replacement in fixes:
-              content = re.sub(pattern, replacement, content)
-          
-          with open('index.html', 'w', encoding='utf-8') as f:
-              f.write(content)
-          
-          print("HTML fixed successfully!")
-          EOF
-          
-          python3 fix_html.py
-
-      - name: Verify fixes
-        run: |
-          echo "Checking if fixes were applied..."
-          if grep -q "event.preventDefault()" index.html; then
-            echo "✓ preventDefault found in HTML"
-          else
-            echo "✗ preventDefault not found"
-            exit 1
-          fi
-
       - name: Tests
         uses: Yandex-Practicum/test-project-action@v1
         with:
