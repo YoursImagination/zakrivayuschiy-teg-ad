@@ -289,52 +289,25 @@
   </article>
 
   <div class="button">
-    <button type="button" class="button-remember" id="remember-btn">
+    <button type="button" class="button-remember" onclick="event.preventDefault(); window['dialog-id'].showModal()" aria-controls="dialog-id">
       <svg class="floppy" viewbox="0 0 39 39">
         <use href="./svg/floppy.svg#floppy"/>
       </svg>
       <span class="button__text-remember">Сохранить на память</span>
     </button>
   </div>
-
-  <!-- Заменяем dialog на обычный div -->
-  <div class="custom-dialog" id="dialog-id" style="display: none;">
+  <dialog class="dialog" id="dialog-id">
     <div class="dialog__flex">
       <svg class="floppy-dialog" viewbox="0 0 39 39">
         <use href="./svg/floppy.svg#floppy"/>
       </svg>
       <span class="dialog__flex-text">Вставьте дискету, чтобы продолжить</span>
     </div>
-    <button type="button" class="button-save" id="save-btn">
+    <button type="button" class="button-save" onclick="event.preventDefault(); window['dialog-id'].close()">
       <span class="button-save-text">ок</span>
     </button>
-  </div>
-  <div class="dialog-backdrop" id="backdrop" style="display: none;"></div>
+  </dialog>
 </main>
-
-<script>
-  // Простая кастомная реализация без диалога
-  document.getElementById('remember-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('dialog-id').style.display = 'block';
-    document.getElementById('backdrop').style.display = 'block';
-  });
-
-  document.getElementById('save-btn').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.getElementById('dialog-id').style.display = 'none';
-    document.getElementById('backdrop').style.display = 'none';
-  });
-
-  // Защита от любых других событий
-  window.addEventListener('beforeunload', function(e) {
-    // Блокируем перезагрузку если это не явный запрос
-    if (!window.allowReload) {
-      e.preventDefault();
-      e.returnValue = '';
-    }
-  });
-</script>
 <script src="./scripts/like.js"></script>
 </body>
 </html>
