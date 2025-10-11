@@ -56,3 +56,10 @@ function setButtonText(heart, button) {
     );
   }
 }
+
+function closeDialogAndReload() {
+  window['dialog-id'].close();
+  setTimeout(() => {
+    location.reload();
+  }, 50);
+}
