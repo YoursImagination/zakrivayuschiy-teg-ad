@@ -2,7 +2,6 @@
 ✦ like-icon — для svg-иконки анимированного сердца
 ✦ card__like-button — для кнопки Like рядом с иконкой
 ✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
 ✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 Если эти классы поменять в HTML, скрипт перестанет работать. Будьте аккуратны.
@@ -26,16 +25,23 @@ likeButtonArray.forEach((button, index) => {
   };
 });
 
-// Сохранить на память разраба тестов
+// Получаем диалог один раз
+const dialog = document.getElementById('dialog-id');
+
+// Сохранить на память
 document.querySelector('.button-remember').addEventListener('click', function(event) {
   event.preventDefault();
-  window['dialog-id'].showModal();
+  if (dialog) {
+    dialog.showModal();
+  }
 });
 
-// ОК
+// ОК — закрыть диалог
 document.querySelector('.button-save').addEventListener('click', function(event) {
   event.preventDefault();
-  window['dialog-id'].close();
+  if (dialog) {
+    dialog.close();
+  }
 });
 
 function toggleIsLiked(heart, button) {
@@ -44,15 +50,16 @@ function toggleIsLiked(heart, button) {
 }
 
 function setButtonText(heart, button) {
-  if ([...heart.classList].includes('is-liked')) {
-    setTimeout(
-      () => (button.querySelector('.button__text').textContent = 'Unlike'),
-      500
-    );
+  const textEl = button.querySelector('.button__text');
+  if (!textEl) return;
+
+  if (heart.classList.contains('is-liked')) {
+    setTimeout(() => {
+      textEl.textContent = 'Unlike';
+    }, 500);
   } else {
-    setTimeout(
-      () => (button.querySelector('.button__text').textContent = 'Like'),
-      500
-    );
+    setTimeout(() => {
+      textEl.textContent = 'Like';
+    }, 500);
   }
 }
