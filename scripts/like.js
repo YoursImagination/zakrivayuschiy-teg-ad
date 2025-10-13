@@ -36,7 +36,7 @@ document.querySelector('.button-remember').addEventListener('click', function(ev
     dialog.showModal();
   }
 });
-
+// Такая тема: сделано почти всё, кроме этого мусора, спасибо, Яндекс, планка как всегда на высоте
 document.querySelector('.button-save').addEventListener('click', function(event) {
   event.preventDefault();
   event.stopPropagation();
