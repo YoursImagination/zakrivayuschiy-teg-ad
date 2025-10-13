@@ -25,21 +25,24 @@ likeButtonArray.forEach((button, index) => {
   };
 });
 
-// Получаем диалог один раз
 const dialog = document.getElementById('dialog-id');
 
-// Сохранить на память
 document.querySelector('.button-remember').addEventListener('click', function(event) {
   event.preventDefault();
-  if (dialog) {
+  event.stopPropagation();
+
+  const dialog = document.getElementById('dialog-id');
+  if (dialog && typeof dialog.showModal === 'function') {
     dialog.showModal();
   }
 });
 
-// ОК — закрыть диалог
 document.querySelector('.button-save').addEventListener('click', function(event) {
   event.preventDefault();
-  if (dialog) {
+  event.stopPropagation();
+
+  const dialog = document.getElementById('dialog-id');
+  if (dialog && typeof dialog.close === 'function') {
     dialog.close();
   }
 });
