@@ -7,59 +7,59 @@
 Если эти классы поменять в HTML, скрипт перестанет работать. Будьте аккуратны.
 */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Лайки
-  const likeHeartArray = document.querySelectorAll('.like-icon');
-  const likeButtonArray = document.querySelectorAll('.card__like-button');
-  const iconButtonArray = document.querySelectorAll('.card__icon-button');
+const likeHeartArray = document.querySelectorAll('.like-icon');
+const likeButtonArray = document.querySelectorAll('.card__like-button');
+const iconButtonArray = document.querySelectorAll('.card__icon-button');
 
-  iconButtonArray.forEach((iconButton, index) => {
-    iconButton.addEventListener('click', (event) => {
-      event.preventDefault();
-      toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
-    });
-  });
+iconButtonArray.forEach((iconButton, index) => {
+  iconButton.onclick = (event) => {
+    event.preventDefault();
+    toggleIsLiked(likeHeartArray[index], likeButtonArray[index]);
+  };
+});
 
-  likeButtonArray.forEach((button, index) => {
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      toggleIsLiked(likeHeartArray[index], button);
-    });
-  });
+likeButtonArray.forEach((button, index) => {
+  button.onclick = (event) => {
+    event.preventDefault();
+    toggleIsLiked(likeHeartArray[index], button);
+  };
+});
 
-  // 🔥 КНОПКИ "СОХРАНИТЬ" И "ОК" — ТОЛЬКО preventDefault, НИЧЕГО БОЛЬШЕ
-  const rememberBtn = document.querySelector('.button-remember');
-  const saveBtn = document.querySelector('.button-save');
+// Получаем диалог один раз
+const dialog = document.getElementById('dialog-id');
 
-  if (rememberBtn) {
-    rememberBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-  }
-
-  if (saveBtn) {
-    saveBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-  }
-
-  function toggleIsLiked(heart, button) {
-    heart.classList.toggle('is-liked');
-    setButtonText(heart, button);
-  }
-
-  function setButtonText(heart, button) {
-    const textEl = button.querySelector('.button__text');
-    if (!textEl) return;
-
-    if (heart.classList.contains('is-liked')) {
-      setTimeout(() => {
-        textEl.textContent = 'Unlike';
-      }, 500);
-    } else {
-      setTimeout(() => {
-        textEl.textContent = 'Like';
-      }, 500);
-    }
+// Сохранить на память
+document.querySelector('.button-remember').addEventListener('click', function(event) {
+  event.preventDefault();
+  if (dialog) {
+    dialog.showModal();
   }
 });
+
+// ОК — закрыть диалог
+document.querySelector('.button-save').addEventListener('click', function(event) {
+  event.preventDefault();
+  if (dialog) {
+    dialog.close();
+  }
+});
+
+function toggleIsLiked(heart, button) {
+  heart.classList.toggle('is-liked');
+  setButtonText(heart, button);
+}
+
+function setButtonText(heart, button) {
+  const textEl = button.querySelector('.button__text');
+  if (!textEl) return;
+
+  if (heart.classList.contains('is-liked')) {
+    setTimeout(() => {
+      textEl.textContent = 'Unlike';
+    }, 500);
+  } else {
+    setTimeout(() => {
+      textEl.textContent = 'Like';
+    }, 500);
+  }
+}
