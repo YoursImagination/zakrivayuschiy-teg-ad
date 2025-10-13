@@ -6,7 +6,9 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 Если эти классы поменять в HTML, скрипт перестанет работать. Будьте аккуратны.
 */
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Лайки
   const likeHeartArray = document.querySelectorAll('.like-icon');
   const likeButtonArray = document.querySelectorAll('.card__like-button');
   const iconButtonArray = document.querySelectorAll('.card__icon-button');
@@ -25,29 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Диалог: Сохранить на память
+  // 🔥 КНОПКИ "СОХРАНИТЬ" И "ОК" — ТОЛЬКО preventDefault, НИЧЕГО БОЛЬШЕ
   const rememberBtn = document.querySelector('.button-remember');
   const saveBtn = document.querySelector('.button-save');
 
   if (rememberBtn) {
     rememberBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation();
-      const dialog = document.getElementById('dialog-id');
-      if (dialog && typeof dialog.showModal === 'function') {
-        dialog.showModal();
-      }
     });
   }
 
   if (saveBtn) {
     saveBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation();
-      const dialog = document.getElementById('dialog-id');
-      if (dialog && typeof dialog.close === 'function') {
-        dialog.close();
-      }
     });
   }
 
