@@ -28,21 +28,8 @@ likeButtonArray.forEach((button, index) => {
 // Получаем диалог один раз
 const dialog = document.getElementById('dialog-id');
 
-// Сохранить на память
-document.querySelector('.button-remember').addEventListener('click', function(event) {
-  event.preventDefault();
-  if (dialog) {
-    dialog.showModal();
-  }
-});
-
-// ОК — закрыть диалог
-document.querySelector('.button-save').addEventListener('click', function(event) {
-  event.preventDefault();
-  if (dialog) {
-    dialog.close();
-  }
-});
+document.querySelector('.button-remember')?.addEventListener('click', e => e.preventDefault());
+document.querySelector('.button-save')?.addEventListener('click', e => e.preventDefault());
 
 function toggleIsLiked(heart, button) {
   heart.classList.toggle('is-liked');
