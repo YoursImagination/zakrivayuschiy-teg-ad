@@ -28,8 +28,30 @@ likeButtonArray.forEach((button, index) => {
 // Получаем диалог один раз
 const dialog = document.getElementById('dialog-id');
 
-document.querySelector('.button-remember')?.addEventListener('click', e => e.preventDefault());
-document.querySelector('.button-save')?.addEventListener('click', e => e.preventDefault());
+document.querySelector('.button-remember')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  const dialog = document.getElementById('dialog-id');
+  if (dialog) {
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal();
+    } else {
+      dialog.removeAttribute('hidden');
+      dialog.style.display = 'block';
+    }
+  }
+});
+
+document.querySelector('.button-save')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  const dialog = document.getElementById('dialog-id');
+  if (dialog) {
+    if (typeof dialog.close === 'function') {
+      dialog.close();
+    } else {
+      dialog.style.display = 'none';
+    }
+  }
+});
 
 function toggleIsLiked(heart, button) {
   heart.classList.toggle('is-liked');
